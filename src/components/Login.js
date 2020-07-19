@@ -2,7 +2,7 @@ import React from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import Button from './Button';
 import Input from './Input';
-
+import {Actions} from 'react-native-router-flux';
 const Login = ({goBack}) => {
   return (
     <View style={styles.container}>
@@ -32,8 +32,10 @@ const Login = ({goBack}) => {
             },
             textShadowRadius: 0,
           }}
+          onPress={() => Actions.tabs()}
         />
       </View>
+      <View style={styles.footer} />
     </View>
   );
 };
@@ -68,6 +70,10 @@ const styles = StyleSheet.create({
     padding: 10,
     color: 'gray',
     margin: 10,
+    top: -20,
+  },
+  footer: {
+    height: 300,
   },
 });
 export default Login;

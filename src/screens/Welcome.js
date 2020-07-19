@@ -1,9 +1,18 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, Image, SafeAreaView} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  SafeAreaView,
+  ScrollView,
+  Dimensions,
+} from 'react-native';
 import Button from '../components/Button';
 import Login from '../components/Login';
 import SignUp from '../components/SignUp';
-
+const widthScreen = Dimensions.get('screen').width;
+const heightScreen = Dimensions.get('screen').height;
 const Welcome = () => {
   const [msn, setMsn] = useState('Bienvenido');
   const showLogin = () => {
@@ -16,7 +25,7 @@ const Welcome = () => {
     setMsn('Bienvenido');
   };
   return (
-    <View style={styles.container}>
+    <>
       <SafeAreaView style={styles.gradient}>
         <Text style={styles.title}>Appets</Text>
         <View style={styles.imageContainer}>
@@ -27,22 +36,26 @@ const Welcome = () => {
           />
         </View>
       </SafeAreaView>
-      <Text style={styles.welcome}>{msn}</Text>
-      {msn === 'Bienvenido' && (
-        <MainContent showSignUp={showSignUp} showLogin={showLogin} />
-      )}
-      {msn === 'Iniciar Sesión' && <Login goBack={showStartScreen} />}
-      {msn === 'Crear Cuenta' && <SignUp goBack={showStartScreen} />}
-    </View>
+      <ScrollView style={styles.container}>
+        <Text style={styles.welcome}>{msn}</Text>
+        {msn === 'Bienvenido' && (
+          <MainContent showSignUp={showSignUp} showLogin={showLogin} />
+        )}
+        {msn === 'Iniciar Sesión' && <Login goBack={showStartScreen} />}
+        {msn === 'Crear Cuenta' && <SignUp goBack={showStartScreen} />}
+      </ScrollView>
+    </>
   );
 };
 
 const MainContent = ({showLogin, showSignUp}) => {
   return (
     <View style={styles.infoContainer}>
-      <Text style={styles.infoText}>
-        La mejor App para Mascotas,{'\n'}Vive la Experiencia
-      </Text>
+      <View style={{padding: 10, marginVertical: 20}}>
+        <Text style={styles.infoText}>
+          La mejor App para Mascotas,{'\n'}Vive la Experiencia
+        </Text>
+      </View>
       <View>
         <View style={styles.buttonContainer}>
           <Button
@@ -61,8 +74,7 @@ const MainContent = ({showLogin, showSignUp}) => {
             }}
             onPress={showLogin}
           />
-        </View>
-        <View style={styles.buttonContainer}>
+
           <Button
             text="Registrate"
             style={[styles.button, {backgroundColor: '#7a7a7e'}]}
@@ -90,8 +102,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   gradient: {
-    width: '100%',
-    height: '45%',
+    width: widthScreen,
+    height: heightScreen / 2,
     backgroundColor: '#5cc3db',
     borderRadius: 40,
   },
@@ -116,7 +128,6 @@ const styles = StyleSheet.create({
     textShadowRadius: 0,
   },
   welcome: {
-    top: -40,
     fontSize: 30,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -129,7 +140,7 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     flex: 1,
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
   },
   infoText: {
     textAlign: 'center',
@@ -138,6 +149,9 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginHorizontal: '2.5%',
+    marginVertical: 20,
+    padding: 5,
+    bottom: -50,
   },
   button: {
     backgroundColor: '#5cc3db',

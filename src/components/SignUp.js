@@ -1,5 +1,11 @@
 import React from 'react';
-import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import Button from './Button';
 import Input from './Input';
 
@@ -38,6 +44,7 @@ const SignUp = ({goBack}) => {
           }}
         />
       </View>
+      <View style={styles.footer} />
     </View>
   );
 };
@@ -72,6 +79,10 @@ const styles = StyleSheet.create({
     padding: 10,
     color: 'gray',
     margin: 10,
+    top: -20,
+  },
+  footer: {
+    height: 300,
   },
 });
 export default SignUp;
