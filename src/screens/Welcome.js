@@ -34,10 +34,10 @@ const Welcome = () => {
             style={styles.image}
             resizeMode="contain"
           />
+          <Text style={styles.welcome}>{msn}</Text>
         </View>
       </SafeAreaView>
       <ScrollView style={styles.container}>
-        <Text style={styles.welcome}>{msn}</Text>
         {msn === 'Bienvenido' && (
           <MainContent showSignUp={showSignUp} showLogin={showLogin} />
         )}
@@ -137,6 +137,7 @@ const styles = StyleSheet.create({
       height: 2,
     },
     textShadowRadius: 0,
+    top: -45,
   },
   infoContainer: {
     flex: 1,
